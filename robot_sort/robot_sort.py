@@ -99,17 +99,29 @@ class SortingRobot:
         # Thinking a bubble sort will work for Mr.Robot and the light is our boolean value. So we will use the light to swap true or false to check and see if we can exit the main loop.
 
         #we need to start with the boolean on so we can turn it off in the loop and toggle on or off when we are looking at items
-        
-        #turn the light off so we can toggle it later
-        
-        #our inner loop will need access to the last index of the array and "can move right" is the only way to get it. This will allow us to iterate through items until the end of the list.
-          
-        #grab an item and move to the right
-            
-        #if we are holding a bigger item(value == 1), make a swap and turn on the light to indicate swap happened. Move smaller item back in the index.
-                
-        #we need a loop that will allow us to move back to the beginning of the of the loop so the robot can continue on his adventure.
-            
+        self.set_light_on()
+        while self.light_is_on():
+            #turn the light off so we can toggle it later
+            self.set_light_off()
+            #our inner loop will need access to the last index of the array and "can move right" is the only way to get it. This will allow us to iterate through items until the end of the list.
+            while self.can_move_right():
+                #grab an item
+                self.swap_item()
+                # move to the right
+                self.move_right()
+                #if we are holding a bigger item(value == 1), make a swap and turn on the light to indicate swap happened. Move smaller item back in the index.
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                    self.move_left()
+                    self.swap_item()
+                else:
+                    self.move_left()
+                    self.swap_item()
+                self.move_right()
+            #we need a loop that will allow us to move back to the beginning of the of the loop so the robot can continue on his adventure.
+            while self.can_move_left():
+                self.move_left()
 
 
 if __name__ == "__main__":
