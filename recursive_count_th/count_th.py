@@ -16,4 +16,5 @@ def count_th(word):
     if len(word) <=1:
         return 0
     
-    pass
+    if word[0] + word[1] == 'th':
+        return count_th(word[1:]) + 1
